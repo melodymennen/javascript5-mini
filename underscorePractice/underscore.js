@@ -71,11 +71,36 @@ var customers = [
   }
 ];
 
+var emails1 = customers.map(obj => {
+  return obj.email
+})
+var emails2 = _.pluck(customers, 'email')
+
+console.log(emails1)
+console.log(emails2)
+
+
 // Create an array of all email addresses
 // first without using underscore's pluck method, then with it.
 
 var inviteList1 = ["Ed", "Fanny", "Mildred", "Alice", "James"];
 var inviteList2 = ["Jake", "Mildred", "Jimmy", "Ed", "Franklin"];
+
+// var invite1 = [];
+// for(var i=0;i<inviteList1.length;i++){
+//   for (j=inviteList2.length-1;j>=0;j--){
+//     if(inviteList2[j]===inviteList1[i]){
+//       invite1 = inviteList2.splice(inviteList2[j],1)
+  
+//     }
+   
+//   }
+// }
+
+var invite2 = _.union(inviteList1, inviteList2);
+
+// console.log(invite1)
+console.log(invite2)
 
 // Uh oh! We are having a party and two invite lists were created.
 // Create a duplicate-free list of the people we want at the party without underscore's ._union().
@@ -102,6 +127,19 @@ var friendsOfBetty = [
   "Tom",
   "Nancy"
 ];
+
+var mutual1 = [];
+for(var i=0;i<friendsOfJim.length;i++){
+  for (j=friendsOfBetty.length-1;j>=0;j--){
+    if(friendsOfBetty[j]===friendsOfJim[i]){
+      mutual1.push(friendsOfBetty[j])
+    }
+  }
+}
+var mutual2 = _.intersection(friendsOfBetty, friendsOfJim);
+
+console.log(mutual1)
+console.log(mutual2)
 
 // Jim and Betty are having a party, but they only want to invite mutual friends.
 // Create an array of mutual friends. First without using underscore.
@@ -141,6 +179,24 @@ var purchases = [
     order: 5000
   }
 ];
+
+var staples = []
+var dm = []
+
+for(var i=0; i<purchases.length;i++){
+  if (purchases[i]['company']==="Dunder Mifflin"){
+    dm.push(purchases[i])
+  }
+  else if (purchases[i]['company']==="Staples"){
+    staples.push(purchases[i])
+  }
+}
+
+var orders2 = _.groupBy(purchases, 'company');
+
+console.log('staples', staples, 'dm', dm)
+console.log(orders2)
+
 
 // First, group the purchases by company without underscore
 // then do it again using _.groupBy()
